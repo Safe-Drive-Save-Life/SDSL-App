@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:safe_drive_save_life/pages/home.dart';
+import 'package:sdsl/pages/home.dart';
 import 'package:flutter/material.dart';
 import '../components/splash_widget.dart';
 
