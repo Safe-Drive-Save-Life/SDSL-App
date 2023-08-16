@@ -1,6 +1,6 @@
 {
-    "name": "safe_drive_save_life",
-    "short_name": "safe_drive_save_life",
+    "name": "sdsl",
+    "short_name": "sdsl",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -13,7 +13,7 @@ class _SplashWidgetState extends State<SplashWidget> {
     return Center(
       child: Image.asset(
         'assets/images/sdsl_splash_screen.png',
-        fit: BoxFit.cover,
+        fit: BoxFit.fill,
       ),
     );
   }

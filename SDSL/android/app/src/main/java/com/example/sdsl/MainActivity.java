@@ -1,4 +1,4 @@
-package com.example.safe_drive_save_life;
+package com.example.sdsl;
 
 import io.flutter.embedding.android.FlutterActivity;
 
