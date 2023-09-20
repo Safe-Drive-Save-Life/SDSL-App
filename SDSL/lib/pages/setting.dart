@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class SettingScreen extends StatefulWidget {
   @override
@@ -6,7 +7,7 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-  bool notificationsEnabled = false;
+  bool notificationsEnabled = true; // 초기 상태: 알림 활성화
 
   // 정보 다이얼로그를 표시하는 함수
   void _showInfoDialog() {
@@ -27,6 +28,31 @@ class _SettingScreenState extends State<SettingScreen> {
         );
       },
     );
+  }
+
+  // 스위치 상태에 따라 푸시 알림을 활성화 또는 비활성화
+  void _toggleNotifications(bool value) async {
+    setState(() {
+      notificationsEnabled = value;
+    });
+
+    final FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+    if (value) {
+      try {
+        String? token = await messaging.getToken();
+        print("토큰 : $token");
+      } catch (e) {
+        print("토큰을 가져오는 중 오류 발생: $e");
+      }
+    } else {
+      try {
+        await messaging.deleteToken();
+        print("토큰을 삭제했습니다.");
+      } catch (e) {
+        print("토큰을 삭제하는 중 오류 발생: $e");
+      }
+    }
   }
 
   @override
@@ -63,7 +89,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     ),
                     IconButton(
                       icon: Icon(Icons.info), // 정보 아이콘 사용
-                        color: Colors.black54,
+                      color: Colors.black54,
                       onPressed: () {
                         // 정보 다이얼로그 표시
                         _showInfoDialog();
@@ -74,9 +100,8 @@ class _SettingScreenState extends State<SettingScreen> {
                 Switch(
                   value: notificationsEnabled,
                   onChanged: (value) {
-                    setState(() {
-                      notificationsEnabled = value;
-                    });
+                    // 스위치 상태 변경 시 호출되는 함수
+                    _toggleNotifications(value);
                   },
                 ),
               ],
