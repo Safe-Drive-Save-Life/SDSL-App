@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'setting.dart';
+import 'result.dart';
+import 'resultGood.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key});
@@ -49,7 +51,10 @@ class Home extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly, // 버튼 간격 조정
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => ResultGood()));
+                  },
                   child: Column(
                     children: [
                       Image.asset('assets/images/1.png',
@@ -68,12 +73,15 @@ class Home extends StatelessWidget {
                 ),
 
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => Result()));
+                  },
                   child: Column(
                     children: [
                       Image.asset('assets/images/2.png',
-                          width: 70,
-                          height: 90),
+                          width: 80,
+                          height: 100),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
@@ -91,8 +99,8 @@ class Home extends StatelessWidget {
                   child: Column(
                     children: [
                       Image.asset('assets/images/3.png',
-                          width: 70,
-                          height: 90),
+                          width: 80,
+                          height: 100),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
@@ -284,8 +292,8 @@ class Home extends StatelessWidget {
                   child: Column(
                     children: [
                       Image.asset('assets/images/9.png',
-                          width: 70,
-                          height: 90),
+                          width: 80,
+                          height: 100),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
