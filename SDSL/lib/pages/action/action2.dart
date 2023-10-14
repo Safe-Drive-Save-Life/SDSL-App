@@ -52,14 +52,29 @@ class _Action2State extends State<Action2> {
                     children: <Widget>[
                       // 조치사항 내용
                       SizedBox(height: 10.0),
+
+                      Image.asset('assets/images/P0122_1.png',
+                          width:330,
+                          height:100),
                       Text(
-                        '조치사항 내용이 여기에 들어갑니다.',
+                        'P0122 고장코드는 위 사진에 표시된 스로틀 위치 센서에 이상이 생겼습니다.',
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.black,
                         ),
                       ),
                       SizedBox(height: 10.0), // 내용 간의 간격을 조절할 수 있습니다.
+
+                      Image.asset('assets/images/P0122_2.png',
+                          width:330,
+                          height:100),
+
+                      SizedBox(height: 10.0),
+
+                      Image.asset('assets/images/P0122_3.png',
+                          width:330,
+                          height:100),
+
                       Text(
                         '조치사항 내용',
                         style: TextStyle(

@@ -79,6 +79,19 @@ flutter:
     - assets/images/good.png
     - assets/images/sdsl_splash_screen.png
     - assets/images/carInfo.png
+    #action
+    - assets/images/P0035_1.png
+    - assets/images/P0122_1.png
+    - assets/images/P0122_2.png
+    - assets/images/P0122_3.png
+    - assets/images/P0135_1.png
+    - assets/images/P0135_2.png
+    - assets/images/P0135_3.png
+    - assets/images/P0339_1.png
+    - assets/images/P0339_2.png
+    - assets/images/P0339_3.png
+    - assets/images/P0339_4.png
+    - assets/images/P0562_1.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
