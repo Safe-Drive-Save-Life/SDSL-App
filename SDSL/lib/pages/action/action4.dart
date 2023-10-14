@@ -52,14 +52,35 @@ class _Action4State extends State<Action4> {
                     children: <Widget>[
                       // 조치사항 내용
                       SizedBox(height: 10.0),
+                      Image.asset('assets/images/P0339_1.png',
+                          width:330,
+                          height:100),
+
                       Text(
-                        '조치사항 내용이 여기에 들어갑니다.',
+                        'P0339 고장코드는 위 사진에 표시된 크랭크축 위치 센서 회로가 오작동하고 있는 경우 발생합니다.',
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.black,
                         ),
                       ),
-                      SizedBox(height: 10.0), // 내용 간의 간격을 조절할 수 있습니다.
+                      SizedBox(height: 15.0),
+
+                      Image.asset('assets/images/P0339_2.png',
+                          width:330,
+                          height:100),
+
+                      SizedBox(height: 15.0),
+
+                      Image.asset('assets/images/P0339_3.png',
+                          width:330,
+                          height:100),
+
+                      SizedBox(height: 15.0),
+
+                      Image.asset('assets/images/P0339_4.png',
+                          width:330,
+                          height:100),
+
                       Text(
                         '조치사항 내용',
                         style: TextStyle(

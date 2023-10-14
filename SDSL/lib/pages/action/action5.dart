@@ -52,8 +52,12 @@ class _Action5State extends State<Action5> {
                     children: <Widget>[
                       // 조치사항 내용
                       SizedBox(height: 10.0),
+                      Image.asset('assets/images/P0135_2.png',
+                          width:330,
+                          height:100),
+
                       Text(
-                        '조치사항 내용이 여기에 들어갑니다.',
+                        'P0562 고장코드는 시스템 전압이 낮을 때 발생합니다.',
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.black,

@@ -51,28 +51,55 @@ class _Action3State extends State<Action3> {
                   child: Column(
                     children: <Widget>[
                       // 조치사항 내용
-                      SizedBox(height: 10.0),
+                      SizedBox(height: 30.0),
+
+                      Image.asset('assets/images/P0135_1.png',
+                          fit: BoxFit.fitWidth),
+
                       Text(
-                        '조치사항 내용이 여기에 들어갑니다.',
+                        ' P0135 고장코드는 위 사진에 표시된 O2 센서 히터 회로가 오작동 하는 경우 발생합니다.(Bank1 Sensor1)',
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.black,
                         ),
                       ),
-                      SizedBox(height: 10.0), // 내용 간의 간격을 조절할 수 있습니다.
+                      SizedBox(height: 30.0), // 내용 간의 간격을 조절할 수 있습니다.
+
+                      Image.asset('assets/images/P0135_3.png',
+                          fit: BoxFit.fitWidth),
                       Text(
-                        '조치사항 내용',
+                        ' 산소 센서를 점검한 후 새로운 산소 센서를 준비합니다.',
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.black,
                         ),
                       ),
+
                       SizedBox(height: 10.0),
-                      // 추가적인 조치사항 내용을 넣어주세요.
+
+                      Image.asset('assets/images/P0135_2.png',
+                          fit: BoxFit.fitWidth),
+                      Text(
+                        ' 기존의 산소 센서를 제거하고 준비한 센서를 연결합니다.',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                        ),
+                      ),
+                      SizedBox(height: 30.0),
+
+                      TextButton(onPressed: () {},
+                        child: Text("주변 정비소가 궁금하다면 클릭!",
+                            style: TextStyle(color: Colors.grey,
+                                fontSize: 15,
+                                decoration: TextDecoration.underline)),
+                      )
                     ],
                   ),
                 ),
+
               ),
+
             ),
           ],
         ),

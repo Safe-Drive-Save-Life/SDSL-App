@@ -52,8 +52,11 @@ class _Action1State extends State<Action1> {
                     children: <Widget>[
                       // 조치사항 내용
                       SizedBox(height: 10.0),
+                      Image.asset('assets/images/P0035_1.png',
+                          width:330,
+                          height:100),
                       Text(
-                        '조치사항 내용이 여기에 들어갑니다.',
+                        'P0035 고장코드는 위 사진에 표시된 터보차저나 슈퍼차저 바이패스 밸브 A에 이상이 생긴 경우 발생합니다.',
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.black,
