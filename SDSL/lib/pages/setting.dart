@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-class SettingScreen extends StatefulWidget {
+class Setting extends StatefulWidget {
   @override
-  _SettingScreenState createState() => _SettingScreenState();
+  _SettingState createState() => _SettingState();
 }
 
-class _SettingScreenState extends State<SettingScreen> {
+class _SettingState extends State<Setting> {
   bool notificationsEnabled = true; // 초기 상태: 알림 활성화
 
   // 정보 다이얼로그를 표시하는 함수
