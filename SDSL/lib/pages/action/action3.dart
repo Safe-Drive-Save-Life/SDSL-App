@@ -105,26 +105,36 @@ class _Action3State extends State<Action3> {
         ),
       ),
       bottomNavigationBar: Container(
-        color: Colors.grey,
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: Colors.grey
+            )
+          )
+        ),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text(
-              '확인',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0,
+          padding: EdgeInsets.all(20.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.build)
               ),
-            ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-            ),
-          ),
+              Text(
+                  '주변 정비소',
+                  style: TextStyle(fontSize: 12)
+              ),
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.call)
+              ),
+              Text(
+                  '마이 정비소',
+                  style: TextStyle(fontSize: 12)
+              ),
+            ]
+          )
         ),
       ),
     );
