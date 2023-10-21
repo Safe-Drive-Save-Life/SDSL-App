@@ -44,7 +44,7 @@ class _Action3State extends State<Action3> {
                 child: Center(
                   child: Container(
                     width: 350,
-                    padding: EdgeInsets.symmetric(horizontal: 20.0), // 좌우 패딩 맞춤
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
                     decoration: BoxDecoration(
                       color: Color(0xffe0e0e0),
                       borderRadius: BorderRadius.circular(20),
@@ -54,34 +54,38 @@ class _Action3State extends State<Action3> {
                         // 조치사항 내용
                         SizedBox(height: 30.0),
 
-                        Image.asset('assets/images/P0135_1.png',
-                            fit: BoxFit.fitWidth),
-
+                        Image.asset(
+                          'assets/images/P0135_1.png',
+                          fit: BoxFit.fitWidth,
+                        ),
                         Text(
-                          ' P0135 고장코드는 위 사진에 표시된 O2 센서 히터 회로가 오작동 하는 경우 발생합니다.(Bank1 Sensor1)',
+                          'P0135 고장코드는 위 사진에 표시된 O2 센서 히터 회로가 오작동 하는 경우 발생합니다.(Bank1 Sensor1)',
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.black,
                           ),
                         ),
-                        SizedBox(height: 30.0), // 내용 간의 간격을 조절할 수 있습니다.
+                        SizedBox(height: 30.0),
 
-                        Image.asset('assets/images/P0135_3.png',
-                            fit: BoxFit.fitWidth),
+                        Image.asset(
+                          'assets/images/P0135_3.png',
+                          fit: BoxFit.fitWidth,
+                        ),
                         Text(
-                          ' 산소 센서를 점검한 후 새로운 산소 센서를 준비합니다.',
+                          '산소 센서를 점검한 후 새로운 산소 센서를 준비합니다.',
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.black,
                           ),
                         ),
-
                         SizedBox(height: 10.0),
 
-                        Image.asset('assets/images/P0135_2.png',
-                            fit: BoxFit.fitWidth),
+                        Image.asset(
+                          'assets/images/P0135_2.png',
+                          fit: BoxFit.fitWidth,
+                        ),
                         Text(
-                          ' 기존의 산소 센서를 제거하고 준비한 센서를 연결합니다.',
+                          '기존의 산소 센서를 제거하고 준비한 센서를 연결합니다.',
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.black,
@@ -99,45 +103,53 @@ class _Action3State extends State<Action3> {
                     ),
                   ),
                 ),
-
               ),
+            ),
 
+            // 주변 정비소, 마이 정비소 버튼
+            Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                    color: Colors.black12,
+                  ),
+                ),
+              ),
+              margin: EdgeInsets.all(10.0),
+              child: Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.build),
+                        ),
+                        Text(
+                          '주변 정비소',
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: <Widget>[
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.call),
+                        ),
+                        Text(
+                          '마이 정비소',
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
-        ),
-      ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: Colors.grey
-            )
-          )
-        ),
-        margin: EdgeInsets.only(top: 7.0), // 위쪽 간격 조절
-        child: Padding(
-          padding: EdgeInsets.all(20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.build)
-              ),
-              Text(
-                  '주변 정비소',
-                  style: TextStyle(fontSize: 12)
-              ),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.call)
-              ),
-              Text(
-                  '마이 정비소',
-                  style: TextStyle(fontSize: 12)
-              ),
-            ]
-          )
         ),
       ),
     );
