@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'monitoring.dart';
 import 'setting.dart';
+import 'result.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key});
@@ -22,7 +24,7 @@ class Home extends StatelessWidget {
         ),
         child: Column(
           children: <Widget>[
-            SizedBox(height: 20), // 공간 추가
+            SizedBox(height: 20),
 
             ElevatedButton(
               onPressed: () {},
@@ -42,14 +44,16 @@ class Home extends StatelessWidget {
                 elevation: 5,
               ),
             ),
-
-            SizedBox(height: 20), // 공간 추가
+            SizedBox(height: 20),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly, // 버튼 간격 조정
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => Monitoring()));
+                  },
                   child: Column(
                     children: [
                       Image.asset('assets/images/1.png',
@@ -68,12 +72,15 @@ class Home extends StatelessWidget {
                 ),
 
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => Result()));
+                  },
                   child: Column(
                     children: [
                       Image.asset('assets/images/2.png',
-                          width: 70,
-                          height: 90),
+                          width: 80,
+                          height: 100),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
@@ -91,8 +98,8 @@ class Home extends StatelessWidget {
                   child: Column(
                     children: [
                       Image.asset('assets/images/3.png',
-                          width: 70,
-                          height: 90),
+                          width: 80,
+                          height: 100),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
@@ -106,8 +113,7 @@ class Home extends StatelessWidget {
                 ),
               ],
             ),
-
-            SizedBox(height: 20), // 공간 추가
+            SizedBox(height: 20),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly, // 버튼 간격 조정
@@ -170,7 +176,7 @@ class Home extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20), // 공간 추가
+            SizedBox(height: 20),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly, // 버튼 간격 조정
@@ -233,7 +239,7 @@ class Home extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20), // 공간 추가
+            SizedBox(height: 20),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly, // 버튼 간격 조정
@@ -284,8 +290,8 @@ class Home extends StatelessWidget {
                   child: Column(
                     children: [
                       Image.asset('assets/images/9.png',
-                          width: 70,
-                          height: 90),
+                          width: 80,
+                          height: 100),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
