@@ -46,6 +46,10 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        // 위치 권한 활성화
+        manifestPlaceholders = [
+                'appAuthRedirectScheme': 'host.exp.exponent'
+        ]
     }
 
     buildTypes {
