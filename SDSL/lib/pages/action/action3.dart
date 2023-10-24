@@ -72,6 +72,9 @@ class _Action3State extends State<Action3> {
                           'assets/images/P0135_1.png',
                           fit: BoxFit.fitWidth,
                         ),
+
+                        SizedBox(height: 5.0),
+
                         Text(
                           'P0135 고장코드는 위 사진에 표시된 O2 센서 히터 회로가 오작동 하는 경우 발생합니다.(Bank1 Sensor1)',
                           style: TextStyle(
@@ -79,6 +82,7 @@ class _Action3State extends State<Action3> {
                             color: Colors.black,
                           ),
                         ),
+
                         SizedBox(height: 30.0),
 
                         Container(
@@ -105,6 +109,9 @@ class _Action3State extends State<Action3> {
                           'assets/images/P0135_2.png',
                           fit: BoxFit.fitWidth,
                         ),
+
+                        SizedBox(height: 5.0),
+
                         Text(
                           '1) 산소 센서를 점검한 후 새로운 산소 센서를 준비해요.',
                           style: TextStyle(
@@ -112,12 +119,16 @@ class _Action3State extends State<Action3> {
                             color: Colors.black,
                           ),
                         ),
+
                         SizedBox(height: 10.0),
 
                         Image.asset(
                           'assets/images/P0125_2.png',
                           fit: BoxFit.fitWidth,
                         ),
+
+                        SizedBox(height: 5.0),
+
                         Text(
                           '2) 기존의 산소 센서를 제거하고 준비한 센서를 연결해요.',
                           style: TextStyle(
