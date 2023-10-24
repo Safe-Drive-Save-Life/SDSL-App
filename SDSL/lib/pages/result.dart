@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sdsl/components/customAppbar.dart';
 import 'action/action1.dart';
 import 'action/action2.dart';
 import 'action/action3.dart';
@@ -16,25 +17,18 @@ class _ResultState extends State<Result> {
   // 각각의 고장 코드와 내용
   List<String> faultCodes = ['P0035', 'P0122', 'P0135', 'P0339', 'P0562'];
   List<String> faultDescriptions = [
-    '터보차저나 슈퍼차저 바이패스 밸브 A에 이상이 생김',
-    '스로틀 위치 센서 TPS A가 너무 낮은\n 전압을 보고하고 있음',
-    'O2 산소 센서 히터 회로 오작동\n',
-    '크랭크축 위치 센서 B 회로 오작동\n',
-    '시스템 전압이 낮음\n',
+    '터보차저나 슈퍼차저 바이패스 밸브에\n이상이 생겼어요.',
+    '스로틀 위치 센서의 전압이 너무 낮아요.\n',
+    'O2 산소 센서 히터 회로가 오작동하고\n있어요.',
+    '크랭크축 위치 센서 회로가 오작동하고 있어요.',
+    '시스템 전압이 너무 낮아요.\n',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffe1edfc),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: Text(
-          'SDSL',
-          style: TextStyle(color: Colors.blueAccent),
-        ),
-      ),
+      appBar: CustomAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 15.0,
@@ -209,29 +203,29 @@ class _ResultState extends State<Result> {
         ),
       ),
       // 확인 버튼
-      bottomNavigationBar: Container(
-        color: Colors.grey,
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text(
-              '확인',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0,
-              ),
-            ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-            ),
-          ),
-        ),
-      ),
+      // bottomNavigationBar: Container(
+      //   color: Colors.grey,
+      //   child: Padding(
+      //     padding: EdgeInsets.all(16.0),
+      //     child: ElevatedButton(
+      //       onPressed: () {
+      //         Navigator.pop(context);
+      //       },
+      //       child: Text(
+      //         '확인',
+      //         style: TextStyle(
+      //           color: Colors.white,
+      //           fontWeight: FontWeight.bold,
+      //           fontSize: 20.0,
+      //         ),
+      //       ),
+      //       style: ElevatedButton.styleFrom(
+      //         backgroundColor: Colors.transparent,
+      //         elevation: 0,
+      //       ),
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
