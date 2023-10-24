@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sdsl/components/customAppbar.dart';
 import 'monitoring.dart';
 import 'setting.dart';
 import 'result.dart';
@@ -10,14 +11,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffe1edfc),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: Text(
-          'SDSL',
-          style: TextStyle(color: Colors.blueAccent),
-        ),
-      ),
+      appBar: CustomAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 15.0,
