@@ -94,6 +94,19 @@ flutter:
     - assets/images/P0339_3.png
     - assets/images/P0339_4.png
     - assets/images/P0562_1.png
+    - assets/images/P0125_1.png
+    - assets/images/P0125_2.png
+    - assets/images/P0125_3.png
+    - assets/images/P0125_4.png
+    - assets/images/P0125_5.png
+    - assets/images/P0125_6.png
+    - assets/images/P0125_7.png
+    - assets/images/P0125_8.png
+    - assets/images/P0335_1.png
+    - assets/images/P0335_2.png
+    - assets/images/P0335_3.png
+    - assets/images/P0335_4.png
+    - assets/images/P0335_5.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

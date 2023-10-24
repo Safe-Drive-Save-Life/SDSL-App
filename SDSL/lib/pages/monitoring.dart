@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sdsl/components/customAppbar.dart';
 
 class Monitoring extends StatefulWidget {
   @override
@@ -32,14 +33,7 @@ class _MonitoringState extends State<Monitoring> {
 
     return Scaffold(
       backgroundColor: Color(0xffe1edfc),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: Text(
-          'SDSL',
-          style: TextStyle(color: Colors.blueAccent),
-        ),
-      ),
+      appBar: CustomAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 15.0,
