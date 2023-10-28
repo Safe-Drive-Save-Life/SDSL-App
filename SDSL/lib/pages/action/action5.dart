@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sdsl/components/carServiceBtnsBar.dart';
+import '../../components/customAppbar.dart';
 
 class Action5 extends StatefulWidget {
   @override
@@ -10,14 +12,7 @@ class _Action5State extends State<Action5> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffe1edfc),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: Text(
-          'SDSL',
-          style: TextStyle(color: Colors.blueAccent),
-        ),
-      ),
+      appBar: CustomAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 15.0,
@@ -25,7 +20,6 @@ class _Action5State extends State<Action5> {
         child: Column(
           children: <Widget>[
             SizedBox(height: 20),
-
             Text(
               '조치사항',
               textAlign: TextAlign.center,
@@ -36,72 +30,150 @@ class _Action5State extends State<Action5> {
                 height: 1.0,
               ),
             ),
-
             SizedBox(height: 20),
 
+            // 조치사항 내용 담을 컨테이너
             Expanded(
               child: SingleChildScrollView(
-                child: Container(
-                  width: 350,
-                  padding: EdgeInsets.symmetric(horizontal: 20.0), // 좌우 패딩 맞춤
-                  decoration: BoxDecoration(
-                    color: Color(0xffe0e0e0),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      // 조치사항 내용
-                      SizedBox(height: 10.0),
-                      Image.asset('assets/images/P0135_2.png',
-                          width:330,
-                          height:100),
+                child: Center(
+                  child: Container(
+                    width: 350,
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    decoration: BoxDecoration(
+                      color: Color(0xffe0e0e0),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Column(
+                      children: <Widget>[
+                        // 조치사항 내용
+                        SizedBox(height: 30.0),
+                        // 1. 고장 위치 확인
+                        SizedBox(
+                          width: 300,
+                          child: Text(
+                            '1. 고장 위치 확인',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              height: 1.0,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20.0),
 
-                      Text(
-                        'P0562 고장코드는 시스템 전압이 낮을 때 발생합니다.',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
+                        // 고장 위치 사진
+                        Image.asset(
+                          'assets/images/P0562_1.png',
+                          fit: BoxFit.fitWidth,
                         ),
-                      ),
-                      SizedBox(height: 10.0), // 내용 간의 간격을 조절할 수 있습니다.
-                      Text(
-                        '조치사항 내용',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
+                        SizedBox(height: 10.0),
+                        Text(
+                          'P0562 고장코드는 시스템 전압이 낮을 때 발생해요.',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 10.0),
-                      // 추가적인 조치사항 내용을 넣어주세요.
-                    ],
+                        SizedBox(height: 30.0),
+
+                        // 회색 구분선
+                        Container(
+                          height: 1.0,
+                          color: Colors.grey,
+                        ),
+                        SizedBox(height: 30.0),
+
+                        // 2. 조치사항
+                        SizedBox(
+                          width: 300,
+                          child: Text(
+                            '2. 조치사항',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              height: 1.0,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20.0),
+
+                        Image.asset(
+                          'assets/images/P0562_2.png',
+                          fit: BoxFit.fitWidth,
+                        ),
+                        SizedBox(height: 10.0),
+                        Text(
+                          '1) P0562 고장코드를 해결하기 위해서는 총 4가지를 체크해서 이상이 있는 부품을 교체해야 해요.',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 10.0),
+                        Text(
+                          '2) 먼저 배터리 케이블이 이상이 없는지 확인해요.',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 15.0),
+
+                        Image.asset(
+                          'assets/images/P0562_3.png',
+                          fit: BoxFit.fitWidth,
+                        ),
+                        SizedBox(height: 10.0),
+                        Text(
+                          '3) 케이블에 이상이 없다면 배터리 전압을 측정해요.',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 15.0),
+
+                        Image.asset(
+                          'assets/images/P0562_4.png',
+                          fit: BoxFit.fitWidth,
+                        ),
+                        SizedBox(height: 10.0),
+                        Text(
+                          '4) 차량 발전기를 체크해요.',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 15.0),
+
+                        Image.asset(
+                          'assets/images/P0562_5.png',
+                          fit: BoxFit.fitWidth,
+                        ),
+                        SizedBox(height: 10.0),
+                        Text(
+                          '5) 마지막으로 배터리 센서가 정상적으로 작동하는지 확인해요.',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 30.0),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
+
+            // 주변 정비소, 마이 정비소 버튼
+            CarServiceBtnsBar(),
           ],
-        ),
-      ),
-      bottomNavigationBar: Container(
-        color: Colors.grey,
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text(
-              '확인',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0,
-              ),
-            ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-            ),
-          ),
         ),
       ),
     );

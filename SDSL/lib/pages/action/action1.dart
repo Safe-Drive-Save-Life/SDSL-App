@@ -212,7 +212,7 @@ class _Action1State extends State<Action1> {
                           'assets/images/P0125_7.png',
                           fit: BoxFit.fitWidth,
                         ),
-                        SizedBox(height: 5.0),
+                        SizedBox(height: 10.0),
                         Text(
                           '9) 또한 Jiggle 밸브의 방향이 그림과 같이 위를 바라보게 해주세요.',
                           style: TextStyle(
