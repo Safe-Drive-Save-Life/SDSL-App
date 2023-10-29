@@ -10,19 +10,25 @@ class _MonitoringState extends State<Monitoring> {
   // 각각의 고장 코드와 내용
   List<String> faultCodes = ['P0035', 'P0122', 'P0135', 'P0339', 'P0562'];
   List<String> faultDescriptions = [
-    '터보차저나 슈퍼차저 바이패스 밸브 A에 이상이 생김',
-    '스로틀 위치 센서 TPS A가 너무 낮은 전압을 보고하고 있음',
-    'O2 산소 센서 히터 회로 오작동',
-    '크랭크축 위치 센서 B 회로 오작동',
-    '시스템 전압이 낮음',
+    '터보차저나 슈퍼차저 바이패스 밸브에\n이상이 생겼어요.',
+    '스로틀 위치 센서의 전압이 너무 낮아요.\n',
+    'O2 산소 센서 히터 회로가 오작동하고\n있어요.',
+    '크랭크축 위치 센서 회로가 오작동하고 있어요.',
+    '시스템 전압이 너무 낮아요.\n',
   ];
 
   // 각 고장 코드의 알림 횟수를 저장하는 변수
-  List<int> notificationCount = [1, 3, 0, 4, 5];
+  List<int> notificationCount = [5, 15, 30, 4, 52];
 
   // 알림 횟수에 따라 색상을 반환하는 함수
   Color getContainerColor(int count) {
-    return count >= 5 ? Color(0xfffaa59d) : Color(0xFFFFC958);
+    if (count >= 50) {
+      return Color(0xbdef0000); // count가 50 이상이면 빨간색
+    } else if (count > 10) {
+      return Color(0x64ff1703); // count가 10 초과 50 미만이면 주황색
+    } else {
+      return Color(0x27ff3737); // 나머지 경우에는 다른 색
+    }
   }
 
   @override
@@ -59,46 +65,59 @@ class _MonitoringState extends State<Monitoring> {
                 itemCount: faultCodes.length,
                 itemBuilder: (context, sortedIndex) {
                   final index = sortedIndices[sortedIndex];
+                  final count = notificationCount[index]; // 알림 횟수
                   return Visibility(
-                    visible: notificationCount[index] > 0,
+                    visible: count > 0,
                     child: Column(
                       children: [
                         SizedBox(height: 10),
                         Container(
                           width: 350,
-                          height: 150,
+                          height: 130,
                           decoration: BoxDecoration(
-                            color: getContainerColor(notificationCount[index]),
+                            color: getContainerColor(count),
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              SizedBox(height: 10),
-
-                              // 고장코드명
-                              Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Text(
-                                  '${faultCodes[index]}',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
+                          child: Row( // Row 위젯 사용
+                            children: [
+                              // 왼쪽에 고장 코드명과 설명 표시
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  SizedBox(height: 10),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          '${faultCodes[index]}',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        Text(
+                                          ' ($count회)',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ),
-
-                              // 고장코드 설명
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                                child: Text(
-                                  faultDescriptions[index],
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.black,
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                                    child: Text(
+                                      faultDescriptions[index],
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                ],
                               ),
                             ],
                           ),
@@ -109,6 +128,7 @@ class _MonitoringState extends State<Monitoring> {
                 },
               ),
             ),
+            SizedBox(height: 20),
           ],
         ),
       ),
