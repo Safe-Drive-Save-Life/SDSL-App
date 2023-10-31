@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:sdsl/components/customAppbar.dart';
 import 'monitoring.dart';
 import 'setting.dart';
 import 'result.dart';
+import 'inference.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
 
 class Home extends StatelessWidget {
   const Home({Key? key});
@@ -45,8 +50,7 @@ class Home extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (_) => Monitoring()));
+
                   },
                   child: Column(
                     children: [
@@ -68,7 +72,7 @@ class Home extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(
-                        context, MaterialPageRoute(builder: (_) => Result()));
+                        context, MaterialPageRoute(builder: (_) => Inference()));
                   },
                   child: Column(
                     children: [
@@ -303,5 +307,18 @@ class Home extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+Future<void> fetchDataFromFlask() async {
+  final response = await http.get(Uri.parse('http://localhost:5000/predict'));
+
+  if (response.statusCode == 200) {
+    // 데이터 성공적으로 가져옴
+    final data = json.decode(response.body);
+    print('Data from Flask: ${data["mean_mse"]}');
+  } else {
+    // 요청이 실패한 경우
+    print('Failed to fetch data from Flask.');
   }
 }
