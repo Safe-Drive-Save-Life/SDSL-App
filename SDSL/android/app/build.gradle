@@ -1,3 +1,7 @@
+task wrapper(type: Wrapper) {
+    gradleVersion = '7.5'
+}
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -70,3 +74,5 @@ dependencies {
     //implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.google.firebase:firebase-analytics'
 }
+
+tasks.register("prepareKotlinBuildScriptModel"){}
