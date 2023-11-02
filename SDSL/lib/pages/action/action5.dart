@@ -143,7 +143,8 @@ class _Action5State extends State<Action5> {
                         ),
                         SizedBox(height: 10.0),
                         Text(
-                          '4) 차량 발전기를 체크해요.',
+                          textAlign: TextAlign.left,
+                          '4) 차량 발전기를 체크해요.                                     ',
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.black,

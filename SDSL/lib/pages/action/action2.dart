@@ -120,7 +120,7 @@ class _Action2State extends State<Action2> {
                       ),
                       SizedBox(height: 10.0),
                       Text(
-                        '2) 크랭크축 위치 센서를 조심스럽게 탈거해요.',
+                        '2) 크랭크축 위치 센서를 조심스럽게 탈거해요.                          ',
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.black,

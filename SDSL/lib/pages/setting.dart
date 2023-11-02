@@ -17,6 +17,7 @@ class _SettingState extends State<Setting> {
         return AlertDialog(
           title: Text('정보'),
           content: Text('백그라운드 실행을 활성화하면 예측 경고 알림을 실시간으로 확인해볼 수 있습니다.'),
+              '- 배터리 수명이 감소할 수 있어요.\n- 다른 앱의 실행이 느려질 수 있어요.\n- 발열 현상이 나타날 수 있어요.'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
