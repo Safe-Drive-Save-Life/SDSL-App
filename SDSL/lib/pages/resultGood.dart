@@ -53,8 +53,8 @@ class ResultGood extends StatelessWidget {
                 SizedBox(height: 30),
 
                 Container(
-                  height: 330,
-                  width: 330,
+                  height: 300,
+                  width: 300,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,

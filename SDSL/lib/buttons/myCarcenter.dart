@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class myCarCenter {
-  String phoneNumber = '123-456-7890'; // 전화번호 변수 설정
+  String phoneNumber = '042-123-4567'; // 전화번호 변수 설정
 
   Future<void> showCallConfirmationDialog(BuildContext context) async {
     showDialog(

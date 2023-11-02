@@ -7,22 +7,43 @@ import 'action/action4.dart';
 import 'action/action5.dart';
 
 class Result extends StatefulWidget {
+  final List<int> inferenceArray;
+
+  Result({Key? key, required this.inferenceArray}) : super(key: key);
+
   @override
   _ResultState createState() => _ResultState();
 }
 
 class _ResultState extends State<Result> {
-  List<bool> containerVisibility = [true, true, true, true, true]; // Visibility 상태를 관리하는 리스트
+  List<bool> containerVisibility = [false, false, false, false, false]; // Visibility 상태를 관리하는 리스트
 
   // 각각의 고장 코드와 내용
   List<String> faultCodes = ['P0035', 'P0122', 'P0135', 'P0339', 'P0562'];
   List<String> faultDescriptions = [
-    '터보차저나 슈퍼차저 바이패스 밸브에\n이상이 생겼어요.',
-    '스로틀 위치 센서의 전압이 너무 낮아요.\n',
-    'O2 산소 센서 히터 회로가 오작동하고\n있어요.',
-    '크랭크축 위치 센서 회로가 오작동하고 있어요.',
-    '시스템 전압이 너무 낮아요.\n',
+    '터보 엔진에서 연료와 공기의 비율을\n감지하는 산소 센서의 문제가 생겼어요.',
+    '엔진의 공기 공급을 제어하는 부분에\n문제가 발생했어요.',
+    '일반 엔진에서 연료와 공기의 비율을\n감지하는 센서의 문제가 발생했어요.',
+    '엔진이 언제 회전하고 멈추는지\n파악하는 센서의 문제가 발생했어요.',
+    '배터리가 충분히 충전되지 않거나\n배터리 내부적으로 문제가 발생했어요.',
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    updateContainerVisibility();
+  }
+
+  void updateContainerVisibility() {
+    // inferenceData에서 각 키에 대한 값을 확인하고, 0보다 크면 해당 인덱스의 containerVisibility 값을 true로 설정
+    for (int i = 0; i < faultCodes.length; i++) {
+      if (widget.inferenceArray[i] != null && widget.inferenceArray[i]! > 0) {
+        containerVisibility[i] = true;
+      } else {
+        containerVisibility[i] = false;
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +57,6 @@ class _ResultState extends State<Result> {
         child: Column(
           children: <Widget>[
             SizedBox(height: 20),
-
             Text(
               '고장 예측 결과',
               textAlign: TextAlign.center,
@@ -202,30 +222,6 @@ class _ResultState extends State<Result> {
           ],
         ),
       ),
-      // 확인 버튼
-      // bottomNavigationBar: Container(
-      //   color: Colors.grey,
-      //   child: Padding(
-      //     padding: EdgeInsets.all(16.0),
-      //     child: ElevatedButton(
-      //       onPressed: () {
-      //         Navigator.pop(context);
-      //       },
-      //       child: Text(
-      //         '확인',
-      //         style: TextStyle(
-      //           color: Colors.white,
-      //           fontWeight: FontWeight.bold,
-      //           fontSize: 20.0,
-      //         ),
-      //       ),
-      //       style: ElevatedButton.styleFrom(
-      //         backgroundColor: Colors.transparent,
-      //         elevation: 0,
-      //       ),
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

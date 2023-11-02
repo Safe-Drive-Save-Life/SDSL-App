@@ -121,7 +121,7 @@ class _Action1State extends State<Action1> {
                         ),
                         SizedBox(height: 10.0),
                         Text(
-                          '2) ECT 센서를 엔진에서 분리해요.',
+                          '2) ECT 센서를 엔진에서 분리해요.                              ',
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.black,
