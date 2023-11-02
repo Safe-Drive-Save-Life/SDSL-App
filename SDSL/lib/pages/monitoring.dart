@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sdsl/components/customAppbar.dart';
+import 'dart:async';
 
 class Monitoring extends StatefulWidget {
   @override
@@ -10,25 +11,73 @@ class _MonitoringState extends State<Monitoring> {
   // 각각의 고장 코드와 내용
   List<String> faultCodes = ['P0035', 'P0122', 'P0135', 'P0339', 'P0562'];
   List<String> faultDescriptions = [
-    '터보차저나 슈퍼차저 바이패스 밸브에\n이상이 생겼어요.',
-    '스로틀 위치 센서의 전압이 너무 낮아요.\n',
-    'O2 산소 센서 히터 회로가 오작동하고\n있어요.',
-    '크랭크축 위치 센서 회로가 오작동하고 있어요.',
-    '시스템 전압이 너무 낮아요.\n',
+    '터보 엔진에서 연료와 공기의 비율을\n감지하는 산소 센서의 문제가 생겼어요.',
+    '엔진의 공기 공급을 제어하는 부분에\n문제가 발생했어요.',
+    '일반 엔진에서 연료와 공기의 비율을\n감지하는 센서의 문제가 발생했어요.',
+    '엔진이 언제 회전하고 멈추는지\n파악하는 센서의 문제가 발생했어요.',
+    '배터리가 충분히 충전되지 않거나\n배터리 내부적으로 문제가 발생했어요.',
   ];
 
   // 각 고장 코드의 알림 횟수를 저장하는 변수
-  List<int> notificationCount = [5, 15, 30, 4, 52];
+  List<int> notificationCount = [0, 0, 0, 0, 0];
+  Timer? timer;
 
   // 알림 횟수에 따라 색상을 반환하는 함수
   Color getContainerColor(int count) {
-    if (count >= 50) {
-      return Color(0xbdef0000); // count가 50 이상이면 빨간색
-    } else if (count > 10) {
-      return Color(0x64ff1703); // count가 10 초과 50 미만이면 주황색
-    } else {
-      return Color(0x27ff3737); // 나머지 경우에는 다른 색
+    if (count >= 15) { // count가 15 이상이면
+      return Color(0xffff0025);
+    } else if (count >= 10) { // count가 10 이상이면
+      return Color(0xffff6e2e);
+    } else if (count >= 5) { // count가 5 이상이면
+      return Color(0xFFFFA74F);
+    } else { // 나머지
+      return Color(0xFFFFC637);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _increaseArrayValues(); // 배열 카운트 증가
+  }
+
+  @override
+  void dispose() {
+    _stopArrayIncrease();
+    super.dispose();
+  }
+
+  void _increaseArrayValues() {
+    // 5초에 한 번씩 배열 값 증가
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        notificationCount[0]++;
+      });
+    });
+    timer = Timer.periodic(Duration(seconds: 2), (timer) {
+      setState(() {
+        notificationCount[1]++;
+      });
+    });
+    timer = Timer.periodic(Duration(seconds: 3), (timer) {
+      setState(() {
+        notificationCount[2]++;
+      });
+    });
+    timer = Timer.periodic(Duration(seconds: 4), (timer) {
+      setState(() {
+        notificationCount[3]++;
+      });
+    });
+    timer = Timer.periodic(Duration(seconds: 5), (timer) {
+      setState(() {
+        notificationCount[4]++;
+      });
+    });
+  }
+
+  void _stopArrayIncrease() {
+    timer?.cancel();
   }
 
   @override
@@ -48,7 +97,7 @@ class _MonitoringState extends State<Monitoring> {
           children: <Widget>[
             SizedBox(height: 20),
             Text(
-              '실시간 자동예측 내역',
+              '실시간 예측 내역',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 25,
