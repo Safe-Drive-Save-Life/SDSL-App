@@ -9,7 +9,7 @@ class Monitoring extends StatefulWidget {
 
 class _MonitoringState extends State<Monitoring> {
   // 각각의 고장 코드와 내용
-  List<String> faultCodes = ['P0035', 'P0122', 'P0135', 'P0339', 'P0562'];
+  List<String> faultCodes = ['P0035', 'P0122', 'P0135', 'P0335', 'P0562'];
   List<String> faultDescriptions = [
     '터보 엔진에서 연료와 공기의 비율을\n감지하는 산소 센서의 문제가 생겼어요.',
     '엔진의 공기 공급을 제어하는 부분에\n문제가 발생했어요.',
@@ -20,6 +20,7 @@ class _MonitoringState extends State<Monitoring> {
 
   // 각 고장 코드의 알림 횟수를 저장하는 변수
   List<int> notificationCount = [0, 0, 0, 0, 0];
+  // List<int> notificationCount = [3, 1, , 6, 19];
   Timer? timer;
 
   // 알림 횟수에 따라 색상을 반환하는 함수

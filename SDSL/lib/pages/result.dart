@@ -19,7 +19,7 @@ class _ResultState extends State<Result> {
   List<bool> containerVisibility = [false, false, false, false, false]; // Visibility 상태를 관리하는 리스트
 
   // 각각의 고장 코드와 내용
-  List<String> faultCodes = ['P0035', 'P0122', 'P0135', 'P0339', 'P0562'];
+  List<String> faultCodes = ['P0035', 'P0122', 'P0135', 'P0335', 'P0562'];
   List<String> faultDescriptions = [
     '터보 엔진에서 연료와 공기의 비율을\n감지하는 산소 센서의 문제가 생겼어요.',
     '엔진의 공기 공급을 제어하는 부분에\n문제가 발생했어요.',
