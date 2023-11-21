@@ -48,7 +48,7 @@ class _ResultState extends State<Result> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffe1edfc),
+      backgroundColor: Color(0xF1F3F8FF),
       appBar: CustomAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(
