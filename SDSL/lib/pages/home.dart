@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:sdsl/components/customAppbar.dart';
+import 'package:sdsl/components/loading.dart';
 import 'package:sdsl/pages/monitoring.dart';
 import 'package:sdsl/pages/resultGood.dart';
 import 'package:sdsl/pages/setting.dart';
@@ -44,336 +45,326 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircularProgressIndicator(), // 로딩 표시기
-            SizedBox(height: 10), // 텍스트와 표시기 사이에 공간을 줍니다.
-            DefaultTextStyle(
-              style: TextStyle(
-                fontSize: 20, // 글꼴 크기 설정
-                color: Colors.blue, // 텍스트 색상 설정
-                fontWeight: FontWeight.bold, // 글꼴 두껍게 설정
-                // 필요한 다른 텍스트 스타일 속성 설정
-              ),
-              child: Text("고장을 예측하고 있어요"), // 텍스트 위젯
-            )
-          ],
-        ),
-      );
-    } else {
-      return Scaffold(
-        backgroundColor: Color(0xffe1edfc),
-        appBar: CustomAppBar(),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 15.0,
-          ),
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {},
-                child: Column(
+    return Stack(
+      children: [
+        Scaffold(
+          backgroundColor: Color(0xffe1edfc),
+          appBar: CustomAppBar(),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 15.0,
+            ),
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Column(
+                    children: [
+                      Image.asset('assets/images/carInfo.png',
+                          width: 330, height: 190),
+                    ],
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    shadowColor: Colors.grey,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    elevation: 5,
+                  ),
+                ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Image.asset('assets/images/carInfo.png',
-                        width: 330, height: 190),
+                    ElevatedButton(
+                      onPressed: () async {
+                        if (!notificationEnabled) {
+                          // notificationEnabled 값이 true인 경우, 경고 팝업 띄우기
+                          _showAlertPopup(context);
+                        } else {
+                          // 아니면 모니터링 결과 화면으로
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => Monitoring()),
+                          );
+                        }
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset('assets/images/1.png',
+                              width: 80, height: 100),
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shadowColor: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        elevation: 5,
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        setState(() {
+                          isLoading = true; // 데이터를 받아오는 중으로 설정
+                        });
+
+                        List<int> inferenceData = await fetchDataFromFlask();
+
+                        setState(() {
+                          isLoading = false; // 데이터를 받아왔으므로 로딩 상태 해제
+                        });
+
+                        if (inferenceData[0] == 0 &&
+                            inferenceData[1] == 0 &&
+                            inferenceData[2] == 0 &&
+                            inferenceData[3] == 0 &&
+                            inferenceData[4] == 0) {
+                          // 예측된 결과 없으면
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => ResultGood()),
+                          );
+                        } else {
+                          // 고장 있으면
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) =>
+                                    Result(inferenceArray: inferenceData)),
+                          );
+                        }
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset('assets/images/2.png',
+                              width: 80, height: 100),
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shadowColor: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        elevation: 5,
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Column(
+                        children: [
+                          Image.asset('assets/images/3.png',
+                              width: 80, height: 100),
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shadowColor: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        elevation: 5,
+                      ),
+                    ),
                   ],
                 ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  shadowColor: Colors.grey,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  elevation: 5,
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Column(
+                        children: [
+                          Image.asset('assets/images/4.png',
+                              width: 80, height: 100),
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shadowColor: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        elevation: 5,
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Column(
+                        children: [
+                          Image.asset('assets/images/5.png',
+                              width: 80, height: 100),
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shadowColor: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        elevation: 5,
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Column(
+                        children: [
+                          Image.asset('assets/images/6.png',
+                              width: 80, height: 100),
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shadowColor: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        elevation: 5,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    onPressed: () async {
-                      if (!notificationEnabled) {
-                        // notificationEnabled 값이 true인 경우, 경고 팝업 띄우기
-                        _showAlertPopup(context);
-                      } else {
-                        // 아니면 모니터링 결과 화면으로
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (_) => Monitoring()),
-                        );
-                      }
-                    },
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/1.png',
-                            width: 80, height: 100),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shadowColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Column(
+                        children: [
+                          Image.asset('assets/images/10.png',
+                              width: 80, height: 100),
+                        ],
                       ),
-                      elevation: 5,
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      setState(() {
-                        isLoading = true; // 데이터를 받아오는 중으로 설정
-                      });
-
-                      List<int> inferenceData = await fetchDataFromFlask();
-
-                      setState(() {
-                        isLoading = false; // 데이터를 받아왔으므로 로딩 상태 해제
-                      });
-
-                      if (inferenceData[0] == 0 &&
-                          inferenceData[1] == 0 &&
-                          inferenceData[2] == 0 &&
-                          inferenceData[3] == 0 &&
-                          inferenceData[4] == 0) {
-                        // 예측된 결과 없으면
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (_) => ResultGood()),
-                        );
-                      } else {
-                        // 고장 있으면
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (_) =>
-                                  Result(inferenceArray: inferenceData)),
-                        );
-                      }
-                    },
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/2.png',
-                            width: 80, height: 100),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shadowColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shadowColor: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        elevation: 5,
                       ),
-                      elevation: 5,
                     ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/3.png',
-                            width: 80, height: 100),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shadowColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Column(
+                        children: [
+                          Image.asset('assets/images/11.png',
+                              width: 80, height: 100),
+                        ],
                       ),
-                      elevation: 5,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly, // 버튼 간격 조정
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/4.png',
-                            width: 80, height: 100),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shadowColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shadowColor: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        elevation: 5,
                       ),
-                      elevation: 5,
                     ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/5.png',
-                            width: 80, height: 100),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shadowColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Column(
+                        children: [
+                          Image.asset('assets/images/12.png',
+                              width: 80, height: 100),
+                        ],
                       ),
-                      elevation: 5,
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/6.png',
-                            width: 80, height: 100),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shadowColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shadowColor: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        elevation: 5,
                       ),
-                      elevation: 5,
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly, // 버튼 간격 조정
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/10.png',
-                            width: 80, height: 100),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shadowColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Column(
+                        children: [
+                          Image.asset('assets/images/7.png',
+                              width: 80, height: 100),
+                        ],
                       ),
-                      elevation: 5,
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/11.png',
-                            width: 80, height: 100),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shadowColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shadowColor: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        elevation: 5,
                       ),
-                      elevation: 5,
                     ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/12.png',
-                            width: 80, height: 100),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shadowColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Column(
+                        children: [
+                          Image.asset('assets/images/8.png',
+                              width: 80, height: 100),
+                        ],
                       ),
-                      elevation: 5,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly, // 버튼 간격 조정
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/7.png',
-                            width: 80, height: 100),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shadowColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shadowColor: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        elevation: 5,
                       ),
-                      elevation: 5,
                     ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/8.png',
-                            width: 80, height: 100),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shadowColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      elevation: 5,
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      bool val = await Navigator.push(
+                    ElevatedButton(
+                      onPressed: () async {
+                        bool val = await Navigator.push(
                           // Setting 화면으로부터 토글 값 받아오기
-                          context,
-                          MaterialPageRoute(builder: (_) => Setting()));
-                      setState(() {
-                        // 변수값 할당
-                        notificationEnabled = val;
-                      });
-                    },
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/9.png',
-                            width: 80, height: 100),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shadowColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                            context,
+                            MaterialPageRoute(builder: (_) => Setting()));
+                        setState(() {
+                          // 변수값 할당
+                          notificationEnabled = val;
+                        });
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset('assets/images/9.png',
+                              width: 80, height: 100),
+                        ],
                       ),
-                      elevation: 5,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shadowColor: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        elevation: 5,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
-      );
-    }
+
+        // 로딩 중 화면
+        if (isLoading)
+          Container(
+            color: Colors.white.withOpacity(0.7), // 불투명도
+            child: LoadingScreen(),
+          ),
+      ],
+    );
   }
 
   Future<List<int>> fetchDataFromFlask() async {
