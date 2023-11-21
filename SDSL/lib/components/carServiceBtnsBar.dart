@@ -27,11 +27,16 @@ class CarServiceBtnsBar extends StatelessWidget {
                   onPressed: () {
                     nearCarcenterBtn().searchNearCarcenter();
                   },
-                  icon: const Icon(Icons.build),
+                  icon: const Icon(
+                      Icons.build,
+                      size: 28,
+                    color: Colors.blueAccent,
+                  ),
                 ),
                 Text(
                   '주변 정비소',
-                  style: TextStyle(fontSize: 12),
+                  style: TextStyle(fontSize: 12,
+                  color: Colors.blueAccent),
                 ),
               ],
             ),
@@ -41,11 +46,16 @@ class CarServiceBtnsBar extends StatelessWidget {
                   onPressed: () async {
                     await carCenter.showCallConfirmationDialog(context);
                   },
-                  icon: const Icon(Icons.call),
+                  icon: const Icon(
+                      Icons.call,
+                      size: 30,
+                    color: Colors.blueAccent,
+                  ),
                 ),
                 Text(
                   '마이 정비소',
-                  style: TextStyle(fontSize: 12),
+                  style: TextStyle(fontSize: 12,
+                  color: Colors.blueAccent),
                 ),
               ],
             ),
