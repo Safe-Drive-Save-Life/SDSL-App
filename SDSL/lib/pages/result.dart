@@ -48,7 +48,7 @@ class _ResultState extends State<Result> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffe1edfc),
+      backgroundColor: Color(0xF1F3F8FF),
       appBar: CustomAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -74,22 +74,35 @@ class _ResultState extends State<Result> {
               child: Container(
                 width: 350,
                 height: 150,
+                padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Color(0xfffaa59d),
+                  color: Color(0xd2fcb1aa),
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        '${containerVisibility.where((visible) => visible).length}개의 고장이 예측됩니다. \n 아래의 사항을 확인해주세요 :(',
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.black,
                         ),
-                        textAlign: TextAlign.center,
+                        children: [
+                          TextSpan(
+                            text: '엔진 멈춤 및 시동 꺼짐과 관련된            ',
+                          ),
+                          TextSpan(
+                            text: '${containerVisibility.where((visible) => visible).length}개',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold, // 고장코드 개수 볼드체 적용
+                            ),
+                          ),
+                          TextSpan(
+                            text: '의 심각한 고장이 예측됩니다 :(',
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -101,7 +114,7 @@ class _ResultState extends State<Result> {
 
             // 예측 고장 코드 목록
             Text(
-              '예측 고장 코드',
+              '예측된 고장 코드',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 25,
@@ -140,7 +153,7 @@ class _ResultState extends State<Result> {
                                 Padding(
                                   padding: const EdgeInsets.all(15.0),
                                   child: Text(
-                                    faultCodes[index], // 각 컨테이너에 다른 고장 코드를 표시
+                                    '${faultCodes[index]}', // 각 컨테이너에 다른 고장 코드를 표시
                                     style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,

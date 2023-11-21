@@ -6,10 +6,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.white,
       centerTitle: true,
-      title: Text(
-        'SDSL',
-        style: TextStyle(color: Colors.blueAccent),
-      ),
+      title:
+      Image.asset('assets/images/logo.png',
+          width: 150, height: 100),
     );
   }
 

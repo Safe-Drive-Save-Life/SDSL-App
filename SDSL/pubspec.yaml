@@ -84,6 +84,9 @@ flutter:
     - assets/images/good.png
     - assets/images/sdsl_splash_screen.png
     - assets/images/carInfo.png
+    - assets/images/loading.gif
+    - assets/images/checked.png
+    - assets/images/logo.png
     #action
     - assets/images/P0035_1.png
     - assets/images/P0122_1.png

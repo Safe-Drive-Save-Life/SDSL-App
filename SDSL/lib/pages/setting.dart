@@ -105,7 +105,7 @@ class _SettingState extends State<Setting> {
         ),
       ),
       body: Container(
-        color: Color(0xffe1edfc),
+        color: Color(0xF1F3F8FF),
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
