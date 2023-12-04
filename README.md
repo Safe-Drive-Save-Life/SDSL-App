@@ -30,7 +30,7 @@
 <br><br><img src="https://github.com/Safe-Drive-Save-Life/SDSL-App/assets/76741411/578fe11a-1bff-4dbd-a8dc-1bec05b0084d" width="200" height="400"/>    <img src="https://github.com/Safe-Drive-Save-Life/SDSL-App/assets/76741411/c73d26ec-ec54-4cc1-90eb-8bdd124287e0" width="200" height="400"/>
 
 - 주변 정비소, 마이 정비소 화면
-<br><br><img src="https://github.com/Safe-Drive-Save-Life/SDSL-App/assets/76741411/e97a940d-6c5d-4325-9f25-6cc6548ffe7d" width="200" height="390"/>    <img src="https://github.com/Safe-Drive-Save-Life/SDSL-App/assets/76741411/66344565-30ab-410d-883b-dc7ca33e554c" width="200" height="400"/>
+<br><br><img src="https://github.com/Safe-Drive-Save-Life/SDSL-App/assets/76741411/e97a940d-6c5d-4325-9f25-6cc6548ffe7d" width="200" height="400"/>    <img src="https://github.com/Safe-Drive-Save-Life/SDSL-App/assets/76741411/66344565-30ab-410d-883b-dc7ca33e554c" width="200" height="400"/>
 
 - 설정 화면 (백그라운드 실행 여부)
 <br><br><img src="https://github.com/Safe-Drive-Save-Life/SDSL-App/assets/76741411/2145af6a-6327-42cc-a734-9fdc865794f9" width="200" height="400"/>    <img src="https://github.com/Safe-Drive-Save-Life/SDSL-App/assets/76741411/c7120ac2-c7f2-4f86-92f1-75b090c1b4c0" width="200" height="400"/>
